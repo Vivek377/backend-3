@@ -8,7 +8,7 @@ notesRoute.get("/", async (req, res) => {
     const decoded = jwt.verify(token, "secret");
     try {
         if (decoded) {
-            const notes = NoteModel.find({ "userId": decoded.userId });
+            const notes = await NoteModel.find({ "userId": decoded.userId });
             res.status(200).send(notes);
         }
     } catch (e) {
